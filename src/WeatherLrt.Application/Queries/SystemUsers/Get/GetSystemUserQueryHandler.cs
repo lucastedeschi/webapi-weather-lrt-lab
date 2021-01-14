@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using WeatherLrt.Application.Exceptions;
 using WeatherLrt.Application.Interfaces;
 using WeatherLrt.Application.Queries.Common;
+using WeatherLrt.Domain.Entities;
 
 namespace WeatherLrt.Application.Queries.SystemUsers.Get
 {
@@ -21,6 +23,9 @@ namespace WeatherLrt.Application.Queries.SystemUsers.Get
         public async Task<SystemUserResponse> Handle(GetSystemUserQuery request, CancellationToken cancellationToken)
         {
             var systemUser = await _context.SystemUsers.FindAsync(request.SystemUserId);
+
+            if (systemUser == null)
+                throw new NotFoundException(nameof(SystemUser), request.SystemUserId);
 
             return _mapper.Map<SystemUserResponse>(systemUser);
         }
