@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WeatherLrt.WebApi.Results;
 
 namespace WeatherLrt.WebApi.Controllers
 {
@@ -10,12 +11,10 @@ namespace WeatherLrt.WebApi.Controllers
     public sealed class WeatherController : WebApiControllerBase<WeatherController>
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<WeatherController> _logger;
 
         public WeatherController(IMediator mediator, ILogger<WeatherController> logger) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet("takeAnUmbrella")]
@@ -25,7 +24,7 @@ namespace WeatherLrt.WebApi.Controllers
                 async () =>
                 {
                     if (string.IsNullOrWhiteSpace(city))
-                        return new BadRequestObjectResult("City has a wrong value");
+                        return new BadRequestErrorResult("City has a wrong value");
 
                     return default;
                 });
