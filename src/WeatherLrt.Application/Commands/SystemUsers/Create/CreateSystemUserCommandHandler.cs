@@ -6,7 +6,7 @@ using WeatherLrt.Domain.Entities;
 
 namespace WeatherLrt.Application.Commands.SystemUsers.Create
 {
-    public sealed class CreateSystemUserCommandHandler : IRequestHandler<CreateSystemUserCommand, long>
+    public sealed class CreateSystemUserCommandHandler : IRequestHandler<CreateSystemUserCommand, CreateSystemUserCommandResponse>
     {
         private readonly IWeatherLrtContext _context;
 
@@ -15,8 +15,12 @@ namespace WeatherLrt.Application.Commands.SystemUsers.Create
             _context = context;
         }
 
-        public async Task<long> Handle(CreateSystemUserCommand request, CancellationToken cancellationToken)
+        public async Task<CreateSystemUserCommandResponse> Handle(CreateSystemUserCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await new CreateSystemUserCommandValidator().ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+                return new CreateSystemUserCommandResponse(validationResult.Errors);
+
             var systemUser = new SystemUser
             {
                 Name = request.Name,
@@ -27,7 +31,7 @@ namespace WeatherLrt.Application.Commands.SystemUsers.Create
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return systemUser.SystemUserId;
+            return new CreateSystemUserCommandResponse(systemUser.SystemUserId);
         }
     }
 }
