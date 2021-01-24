@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WeatherLrt.Application.Interfaces;
+using WeatherLrt.WebApi.Controllers.ExceptionStrategy;
 
 namespace WeatherLrt.WebApi.Controllers
 {
@@ -22,9 +24,13 @@ namespace WeatherLrt.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(ex.ToString());
+                IExceptionStrategy exceptionStrategy = ex switch
+                {
+                    ICustomException _ => new CustomExceptionStrategy<T>(_logger),
+                    _ => new UnexcpectedExceptionStrategy<T>(_logger)
+                };
 
-                return new BadRequestObjectResult(ex.Message);
+                return exceptionStrategy.GetResult(ex);
             }
         }
     }
