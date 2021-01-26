@@ -6,9 +6,9 @@ namespace WeatherLrt.Application.Profiles
 {
     public sealed class SystemUserProfile : Profile
     {
-        public void Map(Profile profile)
+        public SystemUserProfile()
         {
-            profile.CreateMap<SystemUser, SystemUserResponse>();
+            CreateMap<SystemUser, SystemUserResponse>();
         }
     }
 }
