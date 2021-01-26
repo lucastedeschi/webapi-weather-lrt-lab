@@ -13,14 +13,12 @@ namespace WeatlherLrt.Application.Test.Queries.SystemUsers
     public sealed class GetSystemUserQueryTest
     {
         private readonly IWeatherLrtContext _context;
-        private readonly IMapper _mapper;
         private readonly GetSystemUserQueryHandler _handler;
 
         public GetSystemUserQueryTest()
         {
             _context = WeatherLrtTestContextFactory.CreateContextForSQLite();
-            _mapper = new MapperConfiguration(cfg => cfg.AddProfile(new SystemUserProfile())).CreateMapper();
-            _handler = new GetSystemUserQueryHandler(_context, _mapper);
+            _handler = new GetSystemUserQueryHandler(_context, new MapperConfiguration(cfg => cfg.AddProfile(new SystemUserProfile())).CreateMapper());
         }
 
         [Fact]
