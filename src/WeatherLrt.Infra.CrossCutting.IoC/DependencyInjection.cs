@@ -18,6 +18,8 @@ namespace WeatherLrt.Infra.CrossCutting.IoC
             services.AddAutoMapper(typeof(SystemUserProfile).Assembly);
 
             services.AddDbContext<IWeatherLrtContext, WeatherLrtContext>(c => c.UseSqlServer("connectionString"), ServiceLifetime.Scoped);
+
+            //services.AddScoped<IOpenWeatherServiceClient, OpenWeatherServiceClient>();
         }
     }
 }

@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WeatherLrt.Application.Queries.Weather.Search;
 using WeatherLrt.WebApi.Results;
 
 namespace WeatherLrt.WebApi.Controllers
@@ -17,16 +18,18 @@ namespace WeatherLrt.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("takeAnUmbrella")]
-        public async Task<IActionResult> TakeAnUmbrella([FromQuery] string city)
+        [HttpGet("current/search")]
+        public async Task<IActionResult> SearchCurrent([FromQuery] string cityName)
         {
             return await Handle(
                 async () =>
                 {
-                    if (string.IsNullOrWhiteSpace(city))
-                        return new BadRequestErrorResult("City has a wrong value");
+                    if (string.IsNullOrWhiteSpace(cityName))
+                        return new BadRequestErrorResult("City name has a wrong value");
 
-                    return default;
+                    var currentWeather = await _mediator.Send(new SearchCurrentWeatherQuery(cityName));
+
+                    return new OkObjectResult(currentWeather);
                 });
         }
     }

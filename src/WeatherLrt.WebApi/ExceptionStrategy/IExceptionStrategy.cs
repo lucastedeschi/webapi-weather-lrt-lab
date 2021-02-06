@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WeatherLrt.WebApi.Controllers.ExceptionStrategy
+namespace WeatherLrt.WebApi.ExceptionStrategy
 {
     internal interface IExceptionStrategy
     {
