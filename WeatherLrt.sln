@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatlherLrt.Application.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherLrt.Infra.CrossCutting.IoC", "src\WeatherLrt.Infra.CrossCutting.IoC\WeatherLrt.Infra.CrossCutting.IoC.csproj", "{3D0ABF76-3B95-411C-9F50-F2E75619F7BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherLrt.Infra.CrossCutting.Configuration", "src\WeatherLrt.Infra.CrossCutting.Configuration\WeatherLrt.Infra.CrossCutting.Configuration.csproj", "{998091B7-D029-4246-9B12-30B9B684D716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{3D0ABF76-3B95-411C-9F50-F2E75619F7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D0ABF76-3B95-411C-9F50-F2E75619F7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D0ABF76-3B95-411C-9F50-F2E75619F7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{998091B7-D029-4246-9B12-30B9B684D716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{998091B7-D029-4246-9B12-30B9B684D716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{998091B7-D029-4246-9B12-30B9B684D716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{998091B7-D029-4246-9B12-30B9B684D716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{B4E3C993-3AB4-4E26-A080-CE6274FD9516} = {D0BF0B79-982F-4D2A-B19C-F7CB60F63941}
 		{42CDC8A7-13FB-4D4A-902B-CFD044C814CF} = {2978B64D-92FD-47A2-BF3C-9FAC7569C86F}
 		{3D0ABF76-3B95-411C-9F50-F2E75619F7BF} = {D0BF0B79-982F-4D2A-B19C-F7CB60F63941}
+		{998091B7-D029-4246-9B12-30B9B684D716} = {D0BF0B79-982F-4D2A-B19C-F7CB60F63941}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA036809-A3DF-470B-BAA5-2619ED588765}

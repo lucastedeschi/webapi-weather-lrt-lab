@@ -26,7 +26,7 @@ namespace WeatherLrt.WebApi
 
             services.AddLogging();
 
-            services.AddDependencies();
+            services.AddDependencies(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
