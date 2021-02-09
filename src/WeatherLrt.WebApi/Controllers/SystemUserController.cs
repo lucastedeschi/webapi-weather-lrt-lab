@@ -21,16 +21,16 @@ namespace WeatherLrt.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetById([FromRoute] long systemUserId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] long id)
         {
             return await Handle(
                 async () =>
                 {
-                    if (systemUserId != default)
+                    if (id == default)
                         return new BadRequestErrorResult("Id must not be empty");
 
-                    var systemUser = await _mediator.Send(new GetSystemUserQuery(systemUserId));
+                    var systemUser = await _mediator.Send(new GetSystemUserQuery(id));
 
                     return new OkObjectResult(systemUser);
                 });
@@ -57,7 +57,7 @@ namespace WeatherLrt.WebApi.Controllers
             return await Handle(
                 async () =>
                 {
-                    if (command != null)
+                    if (command is null)
                         return new BadRequestErrorResult("Command has a wrong value");
 
                     var response = await _mediator.Send(command);

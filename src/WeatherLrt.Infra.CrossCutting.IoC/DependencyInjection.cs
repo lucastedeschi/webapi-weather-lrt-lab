@@ -23,20 +23,19 @@ namespace WeatherLrt.Infra.CrossCutting.IoC
 
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            var sqlServerConnectionString = configuration.GetConnectionString(WeatherLrtSqlServerConnectionString);
-
-            var openWeatherOptions = new OpenWeatherOptions();
-            configuration.Bind(nameof(OpenWeatherOptions), openWeatherOptions);
-            services.AddSingleton(openWeatherOptions);
-
             services.AddMediatR(typeof(CreateSystemUserCommand).Assembly);
-
             services.AddAutoMapper(typeof(SystemUserProfile).Assembly);
+
+            var sqlServerConnectionString = configuration.GetConnectionString(WeatherLrtSqlServerConnectionString);
 
             services.AddDbContext<IWeatherLrtContext, WeatherLrtContext>(c => c.UseSqlServer(sqlServerConnectionString), ServiceLifetime.Scoped);
 
             services.AddHttpClient(OpenWeatherCurrentClientName)
                 .AddPolicyHandler(GetRetryPolicy());
+
+            var openWeatherOptions = new OpenWeatherOptions();
+            configuration.Bind(nameof(OpenWeatherOptions), openWeatherOptions);
+            services.AddSingleton(openWeatherOptions);
 
             services.AddScoped<IOpenWeatherServiceClient, OpenWeatherServiceClient>();
         }
