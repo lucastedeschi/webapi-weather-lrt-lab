@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WeatherLrt.WebApi.Results;
 
-namespace WeatherLrt.WebApi.Controllers.ExceptionStrategy
+namespace WeatherLrt.WebApi.ExceptionStrategy
 {
     internal sealed class CustomExceptionStrategy<TLogger> : IExceptionStrategy
     {

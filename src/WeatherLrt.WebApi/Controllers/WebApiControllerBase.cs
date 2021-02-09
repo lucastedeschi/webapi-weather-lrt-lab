@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WeatherLrt.Application.Interfaces;
-using WeatherLrt.WebApi.Controllers.ExceptionStrategy;
+using WeatherLrt.WebApi.ExceptionStrategy;
 
 namespace WeatherLrt.WebApi.Controllers
 {
