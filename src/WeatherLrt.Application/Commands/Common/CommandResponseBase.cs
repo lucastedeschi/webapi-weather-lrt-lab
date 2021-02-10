@@ -16,6 +16,11 @@ namespace WeatherLrt.Application.Commands.Common
             Errors = validations.Select(v => v.ErrorMessage);
         }
 
+        protected CommandResponseBase(IEnumerable<string> errors)
+        {
+            Errors = errors;
+        }
+
         public IEnumerable<string> Errors { get; }
     }
 }

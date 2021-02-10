@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WeatherLrt.Domain.Entities;
 using WeatherLrt.Application.Interfaces;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WeatherLrt.Persistence
 {
-    public sealed class WeatherLrtContext : DbContext, IWeatherLrtContext
+    public sealed class WeatherLrtContext : IdentityDbContext<ApplicationUser>, IWeatherLrtContext
     {
         public WeatherLrtContext(DbContextOptions<WeatherLrtContext> options) : base(options)
         {
@@ -37,11 +38,12 @@ namespace WeatherLrt.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<SystemUser>()
                 .HasKey(e => e.SystemUserId)
                 .IsClustered(false)
                 .HasName("pkSystemUser");
-
         }
     }
 }

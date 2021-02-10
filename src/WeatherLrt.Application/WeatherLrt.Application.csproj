@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WeatherLrt.Domain\WeatherLrt.Domain.csproj" />
+    <ProjectReference Include="..\WeatherLrt.Infra.CrossCutting.Configuration\WeatherLrt.Infra.CrossCutting.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

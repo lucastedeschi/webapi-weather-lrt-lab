@@ -1,6 +1,6 @@
-﻿namespace WeatherLrt.Infra.CrossCutting.Configuration.Options
+﻿namespace WeatherLrt.Infra.CrossCutting.Configuration.Settings
 {
-    public sealed class OpenWeatherOptions
+    public sealed class OpenWeatherSettings
     {
         public string Endpoint { get; set; }
 
