@@ -2,7 +2,7 @@
 
 namespace WeatherLrt.Domain.Entities
 {
-    public sealed class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
     }
 }

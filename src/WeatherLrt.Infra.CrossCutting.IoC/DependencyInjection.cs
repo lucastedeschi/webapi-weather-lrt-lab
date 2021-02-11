@@ -30,13 +30,13 @@ namespace WeatherLrt.Infra.CrossCutting.IoC
         {
             services.AddDbContext<WeatherLrtContext>(c => c.UseSqlServer(configuration.GetConnectionString(WeatherLrtSqlServerConnectionString)));
             services.AddScoped<IWeatherLrtContext>(c => c.GetRequiredService<WeatherLrtContext>());
-            
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WeatherLrtContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMediatR(typeof(SignInApplicationUserCommand).Assembly);
-            services.AddAutoMapper(typeof(SystemUserProfile).Assembly);
+            services.AddAutoMapper(typeof(ClothingItemProfile).Assembly);
 
             var openWeatherSettings = new OpenWeatherSettings();
             configuration.Bind(nameof(OpenWeatherSettings), openWeatherSettings);

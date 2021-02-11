@@ -78,11 +78,11 @@ namespace WeatherLrt.Application.IdentityServices
                 return (false, default, $"UserName ({userName}) already exists");
 
             applicationUser = new ApplicationUser
-                {
-                    UserName = userName,
-                    Email = email,
-                    EmailConfirmed = true
-                };
+            {
+                UserName = userName,
+                Email = email,
+                EmailConfirmed = true
+            };
 
             var identityResult = await _userManager.CreateAsync(applicationUser, password);
             if (!identityResult.Succeeded)
