@@ -6,10 +6,9 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using WeatherLrt.Application.Interfaces;
-using WeatherLrt.Application.Queries.ClothingItems.Search;
 using WeatherLrt.Application.Queries.Common;
 
-namespace WeatherLrt.Application.Queries.SystemUsers.Search
+namespace WeatherLrt.Application.Queries.ClothingItems.Search
 {
     public sealed class SearchClothingItemQueryHandler : IRequestHandler<SearchClothingItemQuery, List<ClothingItemResponse>>
     {

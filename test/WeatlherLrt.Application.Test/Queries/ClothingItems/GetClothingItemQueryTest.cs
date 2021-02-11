@@ -44,7 +44,7 @@ namespace WeatlherLrt.Application.Test.Queries.ClothingItems
         }
 
         [Fact]
-        public async Task Handle_GivenAnInexistentSystemUserId_ShouldRaiseAnException()
+        public async Task Handle_GivenAnInexistentClothingItemId_ShouldRaiseAnException()
         {
             var request = new GetClothingItemQuery(1);
 

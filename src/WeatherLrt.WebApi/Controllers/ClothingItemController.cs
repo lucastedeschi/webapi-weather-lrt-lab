@@ -32,9 +32,9 @@ namespace WeatherLrt.WebApi.Controllers
                     if (id == default)
                         return new BadRequestErrorResult("Id must not be empty");
 
-                    var systemUser = await _mediator.Send(new GetClothingItemQuery(id));
+                    var clothingItem = await _mediator.Send(new GetClothingItemQuery(id));
 
-                    return new OkObjectResult(systemUser);
+                    return new OkObjectResult(clothingItem);
                 });
         }
 
@@ -47,7 +47,7 @@ namespace WeatherLrt.WebApi.Controllers
                     if (string.IsNullOrWhiteSpace(description) && string.IsNullOrWhiteSpace(weatherType))
                         return new BadRequestErrorResult("Description and Weather Type must not be empty");
 
-                    if (Enum.TryParse<WeatherType>(weatherType, out var parsedWeatherType))
+                    if (!string.IsNullOrWhiteSpace(weatherType) & !Enum.TryParse<WeatherType>(weatherType, out var parsedWeatherType))
                         return new BadRequestErrorResult("Weather Type has a wrong value");
 
                     var clothingItems = await _mediator.Send(new SearchClothingItemQuery(description, parsedWeatherType));
@@ -70,9 +70,9 @@ namespace WeatherLrt.WebApi.Controllers
                     if (response.Errors.Any())
                         return new BadRequestErrorResult(response.Errors);
 
-                    var systemUser = await _mediator.Send(new GetClothingItemQuery(response.ClothingItemId));
+                    var clothingItem = await _mediator.Send(new GetClothingItemQuery(response.ClothingItemId));
 
-                    return new OkObjectResult(systemUser);
+                    return new OkObjectResult(clothingItem);
                 });
         }
     }

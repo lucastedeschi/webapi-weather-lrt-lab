@@ -4,7 +4,6 @@ using AutoMapper;
 using WeatherLrt.Application.Interfaces;
 using WeatherLrt.Application.Profiles;
 using WeatherLrt.Application.Queries.ClothingItems.Search;
-using WeatherLrt.Application.Queries.SystemUsers.Search;
 using WeatherLrt.Domain.Entities;
 using WeatherLrt.Domain.Enumerations;
 using WeatlherLrt.Application.Test.Persistence;
