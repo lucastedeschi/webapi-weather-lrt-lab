@@ -1,4 +1,4 @@
-# Weather Web API em .NET Core
+# Weather Web API em .NET Core 3.1
 
 O projeto tem como intuito ser um laboratório para testar ferramentas, implementações e ideias.
 
