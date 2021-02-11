@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WeatherLrt.Application.Queries.Weather.Search;
@@ -18,6 +19,7 @@ namespace WeatherLrt.WebApi.Controllers
             _mediator = mediator;
         }
 
+        [Authorize("Bearer")]
         [HttpGet("current/search")]
         public async Task<IActionResult> SearchCurrent([FromQuery] string cityName)
         {

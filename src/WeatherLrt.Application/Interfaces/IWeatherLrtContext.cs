@@ -7,7 +7,9 @@ namespace WeatherLrt.Application.Interfaces
 {
     public interface IWeatherLrtContext
     {
-        DbSet<SystemUser> SystemUsers { get; set; }
+        DbSet<ClothingItem> ClothingItems { get; set; }
+
+        DbSet<ClothingItemWeather> ClothingItemWeathers { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WeatherLrt.Application.Interfaces;
 using WeatherLrt.Domain.Models.OpenWeather.CurrentWeather;
-using WeatherLrt.Infra.CrossCutting.Configuration.Options;
+using WeatherLrt.Infra.CrossCutting.Configuration.Settings;
 
 namespace WeatherLrt.Services.OpenWeather
 {
@@ -17,9 +17,9 @@ namespace WeatherLrt.Services.OpenWeather
 
         private readonly HttpClient _httpClient;
         private readonly ILogger<OpenWeatherServiceClient> _logger;
-        private readonly OpenWeatherOptions _openWeatherOptions;
+        private readonly OpenWeatherSettings _openWeatherOptions;
 
-        public OpenWeatherServiceClient(IHttpClientFactory clientFactory, ILogger<OpenWeatherServiceClient> logger, OpenWeatherOptions openWeatherOptions)
+        public OpenWeatherServiceClient(IHttpClientFactory clientFactory, ILogger<OpenWeatherServiceClient> logger, OpenWeatherSettings openWeatherOptions)
         {
             _httpClient = clientFactory.CreateClient(OpenWeatherCurrentClientName);
             _logger = logger;
@@ -41,7 +41,8 @@ namespace WeatherLrt.Services.OpenWeather
                 var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
 
                 return JsonConvert.DeserializeObject<CurrentWeatherResponse>(await httpResponseMessage.Content.ReadAsStringAsync());
-            } catch(Exception exception)
+            }
+            catch (Exception exception)
             {
                 _logger.LogError(exception, exception.Message);
 

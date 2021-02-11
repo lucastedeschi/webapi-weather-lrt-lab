@@ -4,17 +4,20 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WeatherLrt.Domain.Entities;
 using WeatherLrt.Application.Interfaces;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WeatherLrt.Persistence
 {
-    public sealed class WeatherLrtContext : DbContext, IWeatherLrtContext
+    public sealed class WeatherLrtContext : IdentityDbContext<ApplicationUser>, IWeatherLrtContext
     {
         public WeatherLrtContext(DbContextOptions<WeatherLrtContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
 
-        public DbSet<SystemUser> SystemUsers { get; set; }
+        public DbSet<ClothingItem> ClothingItems { get; set; }
+
+        public DbSet<ClothingItemWeather> ClothingItemWeathers { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -37,11 +40,20 @@ namespace WeatherLrt.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SystemUser>()
-                .HasKey(e => e.SystemUserId)
-                .IsClustered(false)
-                .HasName("pkSystemUser");
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<ClothingItem>()
+                .HasKey(e => e.ClothingItemId)
+                .HasName("pkClothingItem");
+
+            modelBuilder.Entity<ClothingItemWeather>()
+                .HasKey(e => e.ClothingItemWeatherId)
+                .HasName("pkClothingItemWeather");
+
+            modelBuilder.Entity<ClothingItemWeather>()
+                .HasIndex(e => new { e.ClothingItemId, e.WeatherType })
+                .IsUnique()
+                .HasDatabaseName("ukClothingItemWeather");
         }
     }
 }
