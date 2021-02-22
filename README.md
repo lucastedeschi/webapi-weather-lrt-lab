@@ -5,7 +5,6 @@ O projeto tem como intuito ser um laboratório para testar ferramentas, implemen
 Atualmente, ela se integra com a API do OpenWeatherMap para buscar dados climáticos através do nome da cidade.
 
 Algumas implementações e ferramentas que estão no projeto:
-- Solução organizada com base nos princípios do DDD e CQRS
 - MediatR como mediador dos Commands, Queries e Notifications
 - Entity Framework Core como ORM
 - Integração REST com a API do OpenWeatherMap
